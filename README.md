@@ -34,7 +34,7 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the project:
 
    ```shell
-   git clone https://github.com/your-username/react-calculator-app.git
+   git clone https://github.com/tncrayt/react-calculator.git
    ```
 
 2. Navigate to the project directory:
