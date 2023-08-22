@@ -17,7 +17,7 @@ Tabii ki, daha uzun ve İngilizce bir README dosyası aşağıdaki gibi olabilir
 
 The React Calculator App is a web application developed using React.js. It provides a user-friendly interface for performing basic mathematical operations such as addition, subtraction, multiplication, and division. Whether you're a student looking for a simple calculator or just need to do some quick math, this app has you covered.
 
-![Calculator App Screenshot](screenshot.png)
+![Calculator App Screenshot](public/screenshot.png)
 
 ## Getting Started
 
