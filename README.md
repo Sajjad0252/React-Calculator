@@ -40,7 +40,7 @@ Before you begin, ensure you have met the following requirements:
 2. Navigate to the project directory:
 
    ```shell
-   cd react-calculator-app
+   cd react-calculator
    ```
 
 3. Install the dependencies:
