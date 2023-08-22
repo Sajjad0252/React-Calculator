@@ -1,5 +1,3 @@
-Tabii ki, daha uzun ve İngilizce bir README dosyası aşağıdaki gibi olabilir:
-
 # React Calculator App
 
 ## Table of Contents
