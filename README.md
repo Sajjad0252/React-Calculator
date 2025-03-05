@@ -1,6 +1,7 @@
 # React Calculator App
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -11,7 +12,7 @@
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
-## Introduction
+## Introductions
 
 The React Calculator App is a web application developed using React.js. It provides a user-friendly interface for performing basic mathematical operations such as addition, subtraction, multiplication, and division. Whether you're a student looking for a simple calculator or just need to do some quick math, this app has you covered.
 
@@ -90,4 +91,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 We would like to thank the React.js community for their excellent documentation and the open-source contributors who have made building this app possible.
-
