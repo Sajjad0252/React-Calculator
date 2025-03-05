@@ -1,79 +1,102 @@
-import React, { useState } from 'react'
-import "./App.scss"
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import "./index.css";
 
-const btnValues = [
-  [7, 8, 9, "DEL"],
-  [4, 5, 6, "+"],
-  [1, 2, 3, "-"],
-  [".", 0, "/", "x"],
-  ["RESET", "="],
-]
+const calculatorSlice = createSlice({
+  name: "calculator",
+  initialState: { display: "0" },
+  reducers: {
+    input: (state, action) => {
+      if (state.display === "0") {
+        state.display = action.payload;
+      } else {
+        state.display += action.payload;
+      }
+    },
+    clear: (state) => {
+      state.display = "0";
+    },
+    deleteLast: (state) => {
+      state.display =
+        state.display.length > 1 ? state.display.slice(0, -1) : "0";
+    },
+    calculate: (state) => {
+      try {
+        state.display = eval(state.display).toString();
+      } catch {
+        state.display = "Error";
+      }
+    },
+  },
+});
 
-const App = () => {
+const store = configureStore({
+  reducer: { calculator: calculatorSlice.reducer },
+});
+const { input, clear, deleteLast, calculate } = calculatorSlice.actions;
 
-  const [result, setResult] = useState("0")
+const Calculator = () => {
+  const display = useSelector((state) => state.calculator.display);
+  const dispatch = useDispatch();
 
-  const handleClick = (e) => {
-    const value = e.target.getAttribute("value")
-
-    switch (value) {
-      case "DEL":
-
-        break;
-
-      case "+":
-
-        break;
-
-      case "-":
-
-        break;
-
-      case "/":
-
-        break;
-
-      case "x":
-
-        break;
-
-      case "RESET":
-
-        break;
-
-      case "=":
-
-        break;
-
-      default:
-        break;
-    }
-  }
+  const handleClick = (value) => {
+    if (value === "C") dispatch(clear());
+    else if (value === "DEL") dispatch(deleteLast());
+    else if (value === "=") dispatch(calculate());
+    else dispatch(input(value));
+  };
 
   return (
-    <div className='wrapper'>
-      <div className='cal_title'>
-        <span>calc</span>
+    <>
+      {" "}
+      <div className="calculator-container " style={{ marginTop: "50px" }}>
+        <h2 className="title">Calculator</h2>
+        <div className="display">{display}</div>
+        <div className="buttons-grid">
+          {[
+            "7",
+            "8",
+            "9",
+            "DEL",
+            "4",
+            "5",
+            "6",
+            "+",
+            "1",
+            "2",
+            "3",
+            "-",
+            ".",
+            "0",
+            "/",
+            "x",
+          ].map((value) => (
+            <button
+              key={value}
+              className="btn"
+              onClick={() => handleClick(value)}
+            >
+              {value}
+            </button>
+          ))}
+          <button className="btn reset" onClick={() => handleClick("C")}>
+            RESET
+          </button>
+          <button className="btn equals" onClick={() => handleClick("=")}>
+            =
+          </button>
+        </div>
       </div>
-      <div className='cal_result mt-10'>
-        <span>{result}</span>
-      </div>
-      <div className='cal_pad mt-10'>
-        {
-          btnValues.flat().map((item, i) => {
-            return (
-              <button className={`cal_btn 
-              ${item == "DEL" ? 'del' : null}
-              ${item == "RESET" ? 'del' : null}
-              ${item == "=" ? 'eq' : null}
-              `} value={item} key={i} onClick={handleClick}>{item} </button>
-            )
-          })
-        }
+    </>
+  );
+};
 
-      </div>
-    </div>
-  )
-}
+const App = () => (
+  <Provider store={store}>
+    <Calculator />
+  </Provider>
+);
 
-export default App
+export default App;
